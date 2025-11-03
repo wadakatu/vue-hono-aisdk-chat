@@ -1,101 +1,101 @@
-# Vue3 + Hono + AI SDK Chat App
+# Vue3 + Hono + AI SDK チャットアプリ
 
-Real-time streaming chat application built with Vue3, Hono, and AI SDK, featuring UIMessage format support and a live debug panel.
+Vue3、Hono、AI SDKを使用したリアルタイムストリーミングチャットアプリケーション。UIMessage形式のサポートとライブデバッグパネルを搭載しています。
 
-## Features
+## 特徴
 
-- **Real-time Streaming**: Character-by-character AI responses using AI SDK's streaming capabilities
-- **UIMessage Format**: Full support for AI SDK's UIMessage structure with `parts` array
-- **Debug Panel**: Live JSON viewer showing the complete UIMessage structure in real-time
-- **Modern Stack**: Vue3 with Composition API, Hono for backend, and OpenAI GPT-4o-mini
-- **TypeScript**: Fully typed for better developer experience
-- **2-Column Layout**: Chat interface on the left, debug panel on the right
+- **リアルタイムストリーミング**: AI SDKのストリーミング機能を使用した1文字ずつのAI応答
+- **UIMessage形式**: `parts`配列を持つAI SDKのUIMessage構造を完全サポート
+- **デバッグパネル**: UIMessageの完全な構造をリアルタイムで表示するライブJSONビューア
+- **モダンスタック**: Composition APIを使用したVue3、バックエンドはHono、OpenAI GPT-4o-mini
+- **TypeScript**: 完全な型定義による優れた開発体験
+- **2カラムレイアウト**: 左側にチャットインターフェース、右側にデバッグパネル
 
-## Screenshots
+## スクリーンショット
 
-### Chat Interface with Debug Panel
+### チャットインターフェースとデバッグパネル
 
 ![Chat with Debug Panel](screenshots/chat-with-debug-panel.png)
 
-The application features a split-screen layout:
-- **Left**: Beautiful gradient-styled chat interface
-- **Right**: Dark-themed VS Code-style debug panel showing UIMessage JSON structure
+アプリケーションは分割画面レイアウトを採用：
+- **左側**: 美しいグラデーションスタイルのチャットインターフェース
+- **右側**: UIMessageのJSON構造を表示するVS Codeスタイルのダークテーマデバッグパネル
 
-The debug panel displays:
-- Message count in real-time
-- Complete UIMessage structure including:
-  - `parts` array with text and metadata
-  - Streaming states (`step-start`, `done`)
-  - Provider metadata (OpenAI item IDs)
-  - Message IDs and roles
+デバッグパネルには以下が表示されます：
+- リアルタイムのメッセージ数
+- 完全なUIMessage構造：
+  - テキストとメタデータを含む`parts`配列
+  - ストリーミング状態（`step-start`、`done`）
+  - プロバイダーメタデータ（OpenAI item ID）
+  - メッセージIDとロール
 
-## Tech Stack
+## 技術スタック
 
-- **Frontend**: Vue3, TypeScript, Vite
-- **Backend**: Hono (lightweight web framework)
+- **フロントエンド**: Vue3, TypeScript, Vite
+- **バックエンド**: Hono（軽量Webフレームワーク）
 - **AI**: AI SDK (@ai-sdk/vue, @ai-sdk/openai)
-- **Model**: OpenAI GPT-4o-mini
+- **モデル**: OpenAI GPT-4o-mini
 
-## Prerequisites
+## 必要要件
 
-- Node.js 18 or higher
-- OpenAI API key
+- Node.js 18以上
+- OpenAI APIキー
 
-## Installation
+## インストール
 
-1. Clone the repository:
+1. リポジトリをクローン：
 ```bash
 git clone https://github.com/wadakatu/vue-hono-aisdk-chat.git
 cd vue-hono-aisdk-chat
 ```
 
-2. Install dependencies:
+2. 依存関係をインストール：
 ```bash
 npm install
 ```
 
-3. Create a `.env` file in the root directory and add your OpenAI API key:
+3. ルートディレクトリに`.env`ファイルを作成し、OpenAI APIキーを追加：
 ```env
 OPENAI_API_KEY=your_api_key_here
 ```
 
-## Usage
+## 使い方
 
-1. Start the development server:
+1. 開発サーバーを起動：
 ```bash
 npm run dev
 ```
 
-This will start:
-- **Frontend (Vite)**: http://localhost:5173
-- **Backend (Hono)**: http://localhost:3001
+以下のサーバーが起動します：
+- **フロントエンド (Vite)**: http://localhost:5173
+- **バックエンド (Hono)**: http://localhost:3001
 
-2. Open your browser and navigate to http://localhost:5173
+2. ブラウザで http://localhost:5173 を開く
 
-3. Start chatting with the AI! Watch the debug panel on the right to see the UIMessage structure in real-time.
+3. AIとのチャットを開始！右側のデバッグパネルでUIMessage構造をリアルタイムで確認できます。
 
-## Project Structure
+## プロジェクト構造
 
 ```
 vue-hono-aisdk-chat/
 ├── src/
-│   ├── client/           # Vue3 frontend
-│   │   ├── App.vue       # Main component with chat UI and debug panel
-│   │   ├── main.ts       # Vue app entry point
-│   │   └── style.css     # Global styles
-│   └── server/           # Hono backend
-│       └── index.ts      # API endpoints and streaming logic
-├── index.html            # HTML entry point
-├── vite.config.ts        # Vite configuration with proxy
-├── tsconfig.json         # TypeScript configuration
-└── package.json          # Dependencies and scripts
+│   ├── client/           # Vue3フロントエンド
+│   │   ├── App.vue       # チャットUIとデバッグパネルを含むメインコンポーネント
+│   │   ├── main.ts       # Vueアプリのエントリーポイント
+│   │   └── style.css     # グローバルスタイル
+│   └── server/           # Honoバックエンド
+│       └── index.ts      # APIエンドポイントとストリーミングロジック
+├── index.html            # HTMLエントリーポイント
+├── vite.config.ts        # プロキシ設定を含むVite設定
+├── tsconfig.json         # TypeScript設定
+└── package.json          # 依存関係とスクリプト
 ```
 
-## Key Implementation Details
+## 実装の詳細
 
-### UIMessage Structure
+### UIMessage構造
 
-The application uses AI SDK's UIMessage format, which provides a rich structure for chat messages:
+このアプリケーションは、チャットメッセージに対してリッチな構造を提供するAI SDKのUIMessage形式を使用しています：
 
 ```typescript
 {
@@ -112,9 +112,9 @@ The application uses AI SDK's UIMessage format, which provides a rich structure 
 }
 ```
 
-### Server-Side Conversion
+### サーバー側の変換
 
-The server converts UIMessage[] to ModelMessage[] using `convertToModelMessages()`:
+サーバーは`convertToModelMessages()`を使用してUIMessage[]をModelMessage[]に変換します：
 
 ```typescript
 // src/server/index.ts
@@ -129,9 +129,9 @@ const result = streamText({
 return result.toUIMessageStreamResponse()
 ```
 
-### Client-Side Chat Class
+### クライアント側のChatクラス
 
-The frontend uses `@ai-sdk/vue`'s Chat class for reactive state management:
+フロントエンドは`@ai-sdk/vue`のChatクラスをリアクティブな状態管理に使用します：
 
 ```typescript
 import { Chat } from '@ai-sdk/vue'
@@ -145,34 +145,34 @@ const chat = new Chat({
 chat.sendMessage({ text: message })
 ```
 
-## Development
+## 開発
 
-### Available Scripts
+### 利用可能なスクリプト
 
-- `npm run dev` - Start both frontend and backend in development mode
-- `npm run dev:client` - Start only the Vite dev server
-- `npm run dev:server` - Start only the Hono server
+- `npm run dev` - フロントエンドとバックエンドの両方を開発モードで起動
+- `npm run dev:client` - Vite開発サーバーのみを起動
+- `npm run dev:server` - Honoサーバーのみを起動
 
-### API Endpoints
+### APIエンドポイント
 
-- `POST /api/chat` - Stream chat responses using UIMessage format
+- `POST /api/chat` - UIMessage形式を使用してチャット応答をストリーミング
 
-## Environment Variables
+## 環境変数
 
-Create a `.env` file with the following:
+以下の内容で`.env`ファイルを作成してください：
 
 ```env
 OPENAI_API_KEY=your_openai_api_key
 ```
 
-## Contributing
+## コントリビューション
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+コントリビューションを歓迎します！お気軽にPull Requestを送ってください。
 
-## License
+## ライセンス
 
 MIT
 
-## Acknowledgments
+## 謝辞
 
-Built with [Claude Code](https://claude.com/claude-code)
+[Claude Code](https://claude.com/claude-code)で構築
